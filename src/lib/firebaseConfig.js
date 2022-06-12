@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
+import { getFirestore, collection, addDoc, serverTimestamp, } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC36CdYDa8ZJBK4lkIVgs0a7zJj3ZlpZ78",
@@ -12,7 +12,28 @@ const firebaseConfig = {
   measurementId: "G-S1Z23MXP4R"
 }
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app); 
+
+export const auth = getAuth();
+
+// -----SAVE NOTES ON FIREBASE
+
+export const notes = (title, note) => {
+  const user = auth.currentUser;
+  const { uid } = user;
+  addDoc(collection(db, 'notes'), {
+    title,
+    note,
+    userID: uid,
+    date: serverTimestamp(),
+  });
+};
 
 
- export const auth = getAuth();
+
+//1. Algo que me permita crear lña coleccion
+// 2. Algo que me permita acceder a esa coll
+//3. Algo que me permita guardar mi documento en la col
+//4. Algo que me permita verlo
