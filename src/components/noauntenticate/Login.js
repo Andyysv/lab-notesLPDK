@@ -1,5 +1,5 @@
-//En realidad este es el registro
 
+import GoogleButton from 'react-google-button';
 import '../../components/noauntenticate/Login.css'
 import letters from '../../assets/name.png';
 import logoPrincipal from '../../assets/study.jpg';
@@ -14,7 +14,7 @@ const Login = ({loginWithGoogle}) => {
         <img src={logoPrincipal} alt='logoPrincipal' id='logoPink'></img>
           </div>
           <div id='container'>
-            <h1> Registrate </h1>
+            <h1> Login </h1>
         <form className='form'>
         <input
                   name='email'
@@ -37,11 +37,12 @@ const Login = ({loginWithGoogle}) => {
 <button type='submit' className='buttonLogin'>
                 Log in
               </button> </div>
-              <button onClick = {()=>{
-        loginWithGoogle()
-    }}> Login with Google</button>
+              <GoogleButton
+          className="btnGoogleContainer"
+          type="light"
+          onClick={loginWithGoogle}
+        />
         </form>
-    <p>¿Ya tienes cuenta? Inicia Sesión</p>
     </div>
       </div>
     </div>);

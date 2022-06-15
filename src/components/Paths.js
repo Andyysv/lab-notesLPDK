@@ -1,13 +1,13 @@
 import {
-    Routes,
-    Route,
-  } from "react-router-dom";
+  Routes,
+  Route,
+} from "react-router-dom";
 import Login from "./noauntenticate/Login";
 import { loginWithGoogle, Logout } from "../lib/firebaseAuth.js"
 import NotesLayout from "./autenticate/NotesLayout";
 //importar componentes
-import Edit from "./Show"
-import Create from "./Show"
+import Show from "./Show"
+import Create from "./Create"
 
 
 //importamos el router
@@ -18,24 +18,24 @@ import Create from "./Show"
 // despues de importar, enviar como props
 //Rutas
 const Paths = ({isAutenticate}) =>  {
-    return (
+  return (
+    
+  <div>
+    {isAutenticate?
+    <>
+      <Routes>
+      <Route path= "/Create" element = {<Create/> }/> 
+      <Route path= "/Show" element = {<Show/> }/> 
+        <Route path="/" element={<NotesLayout Logout={Logout}/>} />
+      </Routes>
+      </>
+      :
+      <Routes>
+        <Route path="/" element={<Login loginWithGoogle={loginWithGoogle} />} />
+      </Routes>
       
-    <div>
-      {isAutenticate?
-      <>
-        <Routes>
-        <Route path= "/create" element = {<Create/> }/> 
-          <Route path= "/edit/:id" element = {<Edit/> }/>
-          <Route path="/" element={<NotesLayout Logout={Logout}/>} />
-        </Routes>
-        </>
-        :
-        <Routes>
-          <Route path="/" element={<Login loginWithGoogle={loginWithGoogle} />} />
-        </Routes>
-        
-      }
-    </div>);
+    }
+  </div>);
 }
 
 export default Paths; 

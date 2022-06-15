@@ -1,22 +1,28 @@
-/*import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, notes } from '../../lib/firebase-config';
+import './Create.css';
+import { notes } from '../lib/firebaseConfig';
 
-export const createNewNote = () => {
+export const Create = () => {
     //foto, nombre de usuario
     const navigate = useNavigate();
-    const user = auth.currentUser;
-    const name = user?.displayName;
-    const userPhoto = user?.photoURL;
+
+    //1 donde escribir titulo y nota CHECK
+    //2 Boton para guardar: guardar titulo y texto 
+    //3 Como guardarla : conexion con firebase/firestore
+
+    /*const user = auth.currentUser; */
+    /* const name = user?.displayName;
+    const userPhoto = user?.photoURL; */
 
     const [noteTitle, setNoteTitle] = useState('');
-    const [noteText, setNoteText] = useState('');
+    const [noteText, setNoteText] = useState(''); 
 
-//copia de ari para ver si aparecía algo :(
-    const handleAddNote = () => {
+
+    const handleNavShow = () => {
     
-        notes(noteTitle, noteText);
-        navigate('/');
+       // notes(noteTitle, noteText);
+        navigate("/Show");
       };
     
       const Title = (event) => {
@@ -25,41 +31,27 @@ export const createNewNote = () => {
       const Text = (event) => {
         setNoteText(event.target.value);
       };
-    
-      const handleNavHome = () => {
-        navigate('/');
+//funcion que guarda la nota en firebase
+      const handleCreateNote = () => {
+        notes(noteTitle, noteText);
+        navigate("/Show");
       };
     
+
       return (
+        <>
         <section className="newNoteView">
-          <div className="nameContainerNotes">
-            <div className="userContainer">
-              <img src={userPhoto} alt="userPic" className="userPhoto" />
-              <div className="displayName">
-                {' '}
-                ¡Welcome
-                {' '}
-                {name}
-                !
-                {' '}
-              </div>
-            </div>
-          </div>
           <form className="writeAreaContainer">
             <input type="text" id="titleNote" placeholder="Title" onChange={Title} />
-            <textarea id="bodyNote" placeholder="Write your note here" rows="40" cols="40" onChange={Text} />
+            <textarea id="bodyNote" placeholder="Write your note here" rows="40" cols="40" onChange={Text}/>
           </form>
           <footer className="menuContainerNotes">
-            <BsFileEarmarkCheckFill
-              type="submit"
-              className="iconNote"
-              size="2.5em"
-              onClick={handleAddNote}
-            />
-            <MdHome type="submit" className="iconNote" size="3em" onClick={handleNavHome} />
+          <button type="submit" onClick={handleCreateNote}>Save Note</button>
+            <button type="submit" onClick={handleNavShow}>Go home</button>
           </footer>
         </section>
+        </>
       );
     }
     
-    export default NewNote;*/
+    export default Create;

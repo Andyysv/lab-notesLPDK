@@ -15,17 +15,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app); 
-
+//Autenticación
 export const auth = getAuth();
 
 // -----SAVE NOTES ON FIREBASE
 
-export const notes = (title, note) => {
+export const notes = (title, description) => {
   const user = auth.currentUser;
   const { uid } = user;
   addDoc(collection(db, 'notes'), {
     title,
-    note,
+    description,
     userID: uid,
     date: serverTimestamp(),
   });
