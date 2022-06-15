@@ -2,9 +2,9 @@ import React , { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"
 import { db } from "../lib/firebaseConfig"
-//import Swal from "sweetalert2"
-//import withReactContent from "sweetalert2-react-content"
-// const MySwal= withReactContent(Swal)
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content"
+const MySwal= withReactContent(Swal)
 
 // hook para navegar : useNavigate 
 //funcion para mostrar las notas
@@ -36,6 +36,23 @@ const deleteNotes = async (id) => {
     await deleteDoc(notesDoc)
     getNotes()
 }
+// SWEET ALERT...
+const handleDeleteItem = (id) => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+        if (result.isConfirmed) {
+        deleteNotes(id);
+        MySwal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        }
+    });
+    };
 
 useEffect( () => {
     getNotes()
@@ -47,13 +64,13 @@ console.log("mis notas", notes)
 }, [notes] )
 
     return (
-         <>
+            <>
                 <div className="container">
                     <div className="row">
                         <div className="col">
                             <div className="d-grid gap-2">
 < button className="buttonCreate" type = "submit" onClick = {navCreate}>Create Note </button>
-                               </div>
+                                </div>
                                 <table className="table table-dark table-hover">
                                 <thead>
                                     <tr>
@@ -67,12 +84,12 @@ console.log("mis notas", notes)
                                         <td> {note.title} </td> 
                                         <td> {note.description} </td> 
                                         <td>
-                                            <button onClick = { () => {deleteNotes(note.id) } } className= "btn btn-danger"> <i className="fa-solid fa-trash-can"></i></button>
+                                            <button onClick = { () => { handleDeleteItem(note.id) } } className= "btn btn-danger"> <i className="fa-solid fa-trash-can"></i></button>
                                         </td>     
                                         </tr>
                                     ) )) }
                                 </tbody>
-                             </table>
+                        </table>
                         </div>
                     </div>
                 </div>
