@@ -1,3 +1,49 @@
-/* body {
-    background-color: aqua;
-} */
+.writeAreaContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-left: 30px;
+    margin-right: 10px;
+}
+.menuContainerNotes{
+    display: flex;
+    justify-content: space-between;
+}
+
+.saveNoteButton{
+    display: flex;
+    margin-top: 10px;
+    text-align: center;
+    align-items:center;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    background: rgba(255, 138, 174, 1);
+    color: #ffff;
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.goHomeButton{
+    margin-top: 10px;
+    text-align: center;
+    align-items:center;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    background: rgba(255, 138, 174, 1);
+    color: #ffff;
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    font-weight: bolder;
+    display: flex;
+}

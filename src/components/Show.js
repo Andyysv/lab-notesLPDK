@@ -82,6 +82,7 @@ console.log("mis notas", notes)
                     <div className="containerNotes">
                     <div className="userContainerNotes">
                     <img src={userPhoto} alt="userPic" className="userPhoto" />
+                    <div className="displayName">
                         {' '}
                         ¡Welcome
                         {' '}
@@ -91,10 +92,10 @@ console.log("mis notas", notes)
                         <div className="containerButtonCreate">
                             <p> Mis notas: </p>
                         < button className="buttonCreate" type = "submit" onClick = {navCreate}>Create Note </button>
-                        <button onClick = {()=>{Logout()}}> Sing out</button>
                         </div>
                     </div>
                     </div>
+                </div>
                 <div className="container">
 
 

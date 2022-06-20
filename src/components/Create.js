@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Create.css';
-import { notes } from '../lib/firebaseConfig';
+import { auth, notes } from '../lib/firebaseConfig';
 
 export const Create = () => {
     //foto, nombre de usuario
@@ -11,9 +11,9 @@ export const Create = () => {
     //2 Boton para guardar: guardar titulo y texto 
     //3 Como guardarla : conexion con firebase/firestore
 
-    /*const user = auth.currentUser; */
-    /* const name = user?.displayName;
-    const userPhoto = user?.photoURL; */
+    const user = auth.currentUser; 
+    const name = user?.displayName;
+    const userPhoto = user?.photoURL; 
 
     const [noteTitle, setNoteTitle] = useState('');
     const [noteText, setNoteText] = useState(''); 
@@ -41,13 +41,26 @@ export const Create = () => {
       return (
         <>
         <section className="newNoteView">
+        <div className="containerNotes">
+        <div className="userContainerNotes">
+          <img src={userPhoto} alt="userPic" className="userPhoto" />
+          <div className="displayName">
+            {' '}
+            ¡Welcome
+            {' '}
+            {name}
+            !
+            {' '}
+          </div>
+        </div>
+      </div>
           <form className="writeAreaContainer">
             <input type="text" id="titleNote" placeholder="Title" onChange={Title} />
             <textarea id="bodyNote" placeholder="Write your note here" rows="40" cols="40" onChange={Text}/>
           </form>
           <footer className="menuContainerNotes">
-          <button type="submit" onClick={handleCreateNote}>Save Note</button>
-            <button type="submit" onClick={handleNavShow}>Go home</button>
+          <button type="submit" className='saveNoteButton' onClick={handleCreateNote}>Save Note</button>
+            <button type="submit" className='goHomeButton' onClick={handleNavShow}>Go home</button>
           </footer>
         </section>
         </>
