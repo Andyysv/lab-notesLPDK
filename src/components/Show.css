@@ -1,7 +1,36 @@
+.allTheNotes{
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    grid-gap: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    overflow: auto;
+    height: 75%;
+}
+
 .notesAlreadyMade{
     background-color: rgba(160, 139, 243, 1);
     margin-bottom: 10px;
     border-radius: 10px;
     padding: 1rem;
     min-height: 170px;
+    width: 200px; 
+    padding: 4em;
+    display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	white-space: pre-wrap;
+}
+
+.userContainerNotes{
+    height: 150px;
+    width: 100%;
+    background-color: rgb(64, 53, 112);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
 }

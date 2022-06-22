@@ -22,7 +22,7 @@ export const Create = () => {
     const handleNavShow = () => {
     
        // notes(noteTitle, noteText);
-        navigate("/Show");
+        navigate("/");
       };
     
       const Title = (event) => {
@@ -34,7 +34,7 @@ export const Create = () => {
 //funcion que guarda la nota en firebase
       const handleCreateNote = () => {
         notes(noteTitle, noteText);
-        navigate("/Show");
+        navigate("/");
       };
     
 

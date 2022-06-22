@@ -8,6 +8,7 @@ import NotesLayout from "./autenticate/NotesLayout";
 //importar componentes
 import Show from "./Show"
 import Create from "./Create"
+import Edit from "./Edit"
 
 
 //importamos el router
@@ -25,8 +26,8 @@ const Paths = ({isAutenticate}) =>  {
     <>
       <Routes>
       <Route path= "/Create" element = {<Create/> }/> 
-      <Route path= "/Show" element = {<Show/> }/> 
-        <Route path="/" element={<NotesLayout Logout={Logout}/>} />
+      <Route path= "/Edit/:id" element = {<Edit/> }/> 
+      <Route path= "/" element = {<Show/> }/> 
       </Routes>
       </>
       :

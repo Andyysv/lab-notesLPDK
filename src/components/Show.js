@@ -1,12 +1,15 @@
 //Aqui es el muro donde se muestran todas las notas
 
-import React , { useState, useEffect } from "react"
+import React , { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, doc, deleteDoc,query, orderBy } from "firebase/firestore"
-import { auth, db } from "../lib/firebaseConfig"
-import "./Show.css"
-import Swal from "sweetalert2"
-import withReactContent from "sweetalert2-react-content"
+import { collection, getDocs, doc, deleteDoc,query, orderBy } from "firebase/firestore";
+import { auth, db } from "../lib/firebaseConfig";
+import './Edit';
+import "./Show.css";
+import NotesLayout from "./autenticate/NotesLayout";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 const MySwal= withReactContent(Swal)
 
 
@@ -23,6 +26,10 @@ const Show = () => {
     const navCreate = () => {
         navigate("/Create");
     }
+//Preguntar a Ari
+    const handleEdit = (id) => {
+        navigate(`${'/Edit/'}${id}`);
+      };
 
 const [notes, setNotes] = useState([])
 
@@ -80,7 +87,7 @@ console.log("mis notas", notes)
             <>
                 <section className="newNoteView">
                     <div className="containerNotes">
-                    <div className="userContainerNotes">
+                    <div className="userHeaderContainer">
                     <img src={userPhoto} alt="userPic" className="userPhoto" />
                     <div className="displayName">
                         {' '}
@@ -89,13 +96,16 @@ console.log("mis notas", notes)
                         {name}
                         !
                         {' '}
-                        <div className="containerButtonCreate">
-                            <p> Mis notas: </p>
+                        </div>
+                        <div className="myNotesHeaderContainer">
+                            
+                            <p> My notes: </p>
                         < button className="buttonCreate" type = "submit" onClick = {navCreate}>Create Note </button>
+                        <NotesLayout />
                         </div>
                     </div>
                     </div>
-                </div>
+               
                 <div className="container">
 
 
@@ -107,7 +117,8 @@ console.log("mis notas", notes)
                                         <p> {note.title} </p> 
                                         <p> {note.description} </p> 
                                         <div>
-                                            <button onClick = { () => { handleDeleteItem(note.id) } } className= "btn btn-danger"> <i className="fa-solid fa-trash-can"></i></button>
+                                            <button onClick = { () => { handleDeleteItem(note.id) } } className= "btn btn-delete"> <i className="fa-solid fa-trash-can"></i></button>
+                                            <button onClick = { () => { handleEdit(note.id) } } className= "btn btn-edit"> EDIT </button>
                                         </div>     
                                         </div>
                                     ) )) }
